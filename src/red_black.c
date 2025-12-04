@@ -55,20 +55,20 @@ rbNode* rotateRight(rbNode* node) {
 
 
 // Helper function for insertion
-rbNode* insertHelp(rbTree* tree, rbNode* root, int data) {
+rbNode* insertHelper(rbTree* tree, rbNode* root, int data) {
     bool f = false; // Flag to check RED-RED conflict
 
     if (root == NULL)
         return createNode(data);
     else if (data < root->data) {
-        root->left = insertHelp(tree, root->left, data);
+        root->left = insertHelper(tree, root->left, data);
         root->left->parent = root;
         if (root != tree->root) { // TO FIX
             if (root->color == 'R' && root->left->color == 'R')
                 f = true;
         }
     } else {
-        root->right = insertHelp(tree, root->right, data);
+        root->right = insertHelper(tree, root->right, data);
         root->right->parent = root;
         if (root != tree->root) {
             if (root->color == 'R' && root->right->color == 'R')
@@ -140,7 +140,7 @@ void insert(rbTree* tree, int data) {
         tree->root = createNode(data);
         tree->root->color = 'B';
     } else
-        tree->root = insertHelp(tree, tree->root, data);
+        tree->root = insertHelper(tree, tree->root, data);
 }
 
 
@@ -177,32 +177,31 @@ void inorderTraversal(rbTree* tree) {
 
 
 
-int main() {
+// int main() {
 
-    rbTree *tree = createTree();
-    printf("print empty tree:\n");
-    printTree(tree);
+//     rbTree *tree = createTree();
+//     printf("print empty tree:\n");
+//     printTree(tree);
 
-    rbNode *node = createNode(100);
-    printf("node: %d\n", node->data);
+//     rbNode *node = createNode(100);
+//     printf("node: %d\n", node->data);
 
+//     tree->root = node;
 
-    tree->root = node;
+//     printf("print tree with node:\n");
+//     printTree(tree);
 
-    printf("print tree with node:\n");
-    printTree(tree);
-
-    rbTree* tree2 = createTree();
-    int arr[] = {1, 4, 6, 3, 5, 7, 8, 2, 9};
-        for (int i = 0; i < 9; i++) {
-            insert(tree2, arr[i]);
-        }
+//     rbTree* tree2 = createTree();
+//     int arr[] = {1, 4, 6, 3, 5, 7, 8, 2, 9};
+//         for (int i = 0; i < 9; i++) {
+//             insert(tree2, arr[i]);
+//         }
     
-    printTree(tree2);
-    inorderTraversal(tree2);
-    printf("\nroot tree2: %d\n", tree2->root->data);
+//     printTree(tree2);
+//     inorderTraversal(tree2);
+//     printf("\nroot tree2: %d\n", tree2->root->data);
 
-    return 0;
-}
+//     return 0;
+// }
 
 

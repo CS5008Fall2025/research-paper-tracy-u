@@ -60,6 +60,86 @@ bool test_new_tree() {
     return passed;
 }
 
+
+// test rotate left
+bool test_rotate_left() {
+    
+    rbTree* tree = createTree();
+    tree->root = createNode(11);
+    tree->root->left = createNode(9);
+    tree->root->right = createNode(18);
+    tree->root->right->right = createNode(10);
+    if (DEBUG) {
+        printf("Rotate Left: Initial Tree\n");
+        printTree(tree);
+        printf("\n");
+    }
+
+    rbNode* newRoot = rotateLeft(tree->root);
+    tree->root = newRoot;
+
+    if (DEBUG) {
+        printf("Rotate Left: After Rotation\n");
+        printTree(tree);
+        printf("\n");
+    } 
+    
+    bool passed = true;
+    passed &= ASSERT_EQUAL(tree->root->data, 18);
+    passed &= ASSERT_EQUAL(tree->root->left->data, 11);
+    passed &= ASSERT_EQUAL(tree->root->left->left->data, 9);
+    passed &= ASSERT_EQUAL(tree->root->right->data, 10);
+    
+    free(tree);
+    return passed;
+}
+
+
+// test rotate right
+
+
+// test rotate right
+bool test_rotate_right() {
+    
+    rbTree* tree = createTree();
+    tree->root = createNode(11);
+    tree->root->left = createNode(9);
+    tree->root->left->right = createNode(18);
+    tree->root->left->left = createNode(10);
+    if (DEBUG) {
+        printf("Rotate Right: Initial Tree\n");
+        printTree(tree);
+        printf("\n");
+    }
+
+    rbNode* newRoot = rotateRight(tree->root);
+    tree->root = newRoot;
+
+    if (DEBUG) {
+        printf("Rotate Right: After Rotation\n");
+        printTree(tree);
+        printf("\n");
+    } 
+    
+    bool passed = true;
+    passed &= ASSERT_EQUAL(tree->root->data, 9);
+    passed &= ASSERT_EQUAL(tree->root->right->data, 11);
+    passed &= ASSERT_EQUAL(tree->root->left->data, 10);
+    passed &= ASSERT_EQUAL(tree->root->right->left->data, 18);
+    
+    free(tree);
+    return passed;
+}
+
+// test insert
+
+// test print
+
+// test traversal
+
+
+
+
 /******* END TESTS ************/
 
 
@@ -76,7 +156,10 @@ TestingSet * init_testing_set() {
         test_new_node);  
     add_test(set, "test_new_tree() creates an empty tree", GROUP_GENERAL, 
         test_new_tree);  
-
+    add_test(set, "test_rotate_left() rotates left", GROUP_GENERAL, 
+        test_rotate_left); 
+    add_test(set, "test_rotate_right() rotates right", GROUP_GENERAL, 
+        test_rotate_right); 
         
     // add_test(set, "ll_add_front() adds a node to the front of the list", GROUP_ADD, 
     //    test_ll_add_front);  
