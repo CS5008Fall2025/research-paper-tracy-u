@@ -95,7 +95,6 @@ bool test_rotate_left() {
 }
 
 
-// test rotate right
 
 
 // test rotate right
@@ -131,7 +130,54 @@ bool test_rotate_right() {
     return passed;
 }
 
-// test insert
+// test insert - single
+bool test_insert_single() {
+    rbTree* tree = createTree();
+
+    insert(tree, 17);
+
+    bool passed = true;
+    passed &= ASSERT_EQUAL(tree->root->data, 17);
+    passed &= ASSERT_EQUAL(tree->root->color, 'B');
+    passed &= ASSERT_NULL(tree->root->left);
+    passed &= ASSERT_NULL(tree->root->right);
+    passed &= ASSERT_NULL(tree->root->parent);
+    
+    free(tree);
+    return passed;
+}
+
+
+// test insert - multiple
+bool test_insert_multiple() {
+    rbTree* tree = createTree();
+
+    insert(tree, 17);
+    insert(tree, 10);
+    insert(tree, 100);
+    insert(tree, 42);
+    insert(tree, 16);
+
+    bool passed = true;
+    passed &= ASSERT_EQUAL(tree->root->data, 17);
+    passed &= ASSERT_EQUAL(tree->root->color, 'B');
+
+    passed &= ASSERT_EQUAL(tree->root->left->data, 10);
+    passed &= ASSERT_EQUAL(tree->root->left->color, 'B');
+
+    passed &= ASSERT_EQUAL(tree->root->right->data, 100);
+    passed &= ASSERT_EQUAL(tree->root->right->color, 'B');
+
+    passed &= ASSERT_EQUAL(tree->root->right->left->data, 42);
+    passed &= ASSERT_EQUAL(tree->root->right->left->color, 'R');
+
+    passed &= ASSERT_EQUAL(tree->root->left->right->data, 16);
+    passed &= ASSERT_EQUAL(tree->root->left->right->color, 'R');    
+
+    free(tree);
+    return passed;
+}
+
 
 // test print
 
@@ -160,7 +206,11 @@ TestingSet * init_testing_set() {
         test_rotate_left); 
     add_test(set, "test_rotate_right() rotates right", GROUP_GENERAL, 
         test_rotate_right); 
-        
+    add_test(set, "test_insert_single() inserts single value", GROUP_ADD, 
+        test_insert_single); 
+    add_test(set, "test_insert_multiple() inserts multiple values", GROUP_ADD, 
+        test_insert_multiple);     
+
     // add_test(set, "ll_add_front() adds a node to the front of the list", GROUP_ADD, 
     //    test_ll_add_front);  
     // add_test(set, "ll_add_back() adds a node to the back of the list", GROUP_ADD,
