@@ -5,12 +5,6 @@
 #include <stdio.h>
 
 
-rbNode* root;
-bool ll; // Left-Left Rotation flag
-bool rr; // Right-Right Rotation flag
-bool lr; // Left-Right Rotation flag
-bool rl; // Right-Left Rotation flag
-
 
 //  function to create node
 rbNode* createNode(int data) {
@@ -33,15 +27,15 @@ rbTree* createTree() {
 }
 
 
-int main() {
-    rbNode *node = createNode(100);
-    printf("%d\n", node->data);
+// int main() {
+//     rbNode *node = createNode(100);
+//     printf("%d\n", node->data);
 
-    rbTree *tree = createTree();
-    tree->root = node;
-    printf("%d\n", tree->root->data);
+//     rbTree *tree = createTree();
+//     tree->root = node;
+//     printf("%d\n", tree->root->data);
 
-    return 0;
-}
+//     return 0;
+// }
 
 
