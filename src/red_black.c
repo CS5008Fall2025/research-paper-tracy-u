@@ -181,52 +181,47 @@ void inorderTraversal(rbTree* tree) {
 
 
 
-// /**
-//  * Helper function for getting a node from the BST.
-//  * Only returns the first movie with that title, does not look at ids.
-//  *
-//  * Makes use of strcasecmp to compare the titles. for example:
-//  * 
-//    if (strcasecmp(title, curr->movie->title) == 0) {
-//        return curr;
-//    }
-//  *
-//  * @param curr the current node
-//  * @param title the title of the movie to get, if
-//  * @return the first node that was found
-// */
-// rbNode* __find(rbNode * curr, int value) {
-//     if(curr == NULL){
-//         return NULL;
-//     }
-//    else if (strcasecmp(curr->movie->title, title) == 0) {
-//        return curr;
-//    }
-//    else if (strcasecmp(curr->movie->title, title) < 0) {
-//        return __find(curr->right, title);
-//    }
-//    else if (strcasecmp(curr->movie->title, title) > 0) {
-//        return __find(curr->left, title);
-//    }
-//    return NULL;
-// }
+/**
+ * Referece: Speed Comaparison Homework
+ * Helper function for getting a node from the redblack tree.
+ *
+ * Referece: Speed Comaparison Homework
 
-// /**
-//  * Finds the given movie from the BST. 
-//  * 
-//  * Only returns the first movie with that title, does not look at ids.
-//  * 
-//  * @param bst the BST to get from
-//  * @param title the title of the movie to get
-//  * @return the movie that was found
-// */
-// Movie * bst_find(BST * bst, const char * title) {
-//     BSTNode * node = __bst__find(bst->root, title);
-//     if (node == NULL) {
-//         return NULL;
-//     }
-//     return node->movie;
-// }
+ *
+ * @param curr the current node
+ * @param value the value to search for
+ * @return the node that was found
+*/
+rbNode* __find(rbNode * curr, int value) {
+    if(curr == NULL){
+        return NULL;
+    }
+   else if (curr->data == value) {
+       return curr;
+   }
+   else if (curr->data < value) {
+       return __find(curr->right, value);
+   }
+   else if (curr->data > value) {
+       return __find(curr->left, value);
+   }
+   return NULL;
+}
+
+/**
+ * Finds the given node from the rbTree. 
+ * 
+ * @param tree the tree to get from
+ * @param title the value to get
+ * @return the node that was found
+*/
+rbNode* find(rbTree* tree, int value) {
+    rbNode* node = __find(tree->root, value);
+    if (node == NULL) {
+        return NULL;
+    }
+    return node;
+}
 
 
 

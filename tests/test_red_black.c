@@ -209,6 +209,32 @@ bool test_insert_duplicate() {
 }
 
 
+// test find
+bool test_find() {
+    rbTree* tree = createTree();
+
+    insert(tree, 17);
+    insert(tree, 10);
+    insert(tree, 100);
+    insert(tree, 42);
+    insert(tree, 16);
+
+    rbNode* find17 = find(tree, 17);
+    rbNode* find16 = find(tree, 16);
+    rbNode* find42 = find(tree, 42);
+    rbNode* find80 = find(tree, 80);
+
+    bool passed = true;
+    passed &= ASSERT_EQUAL(find17->data, 17);
+    passed &= ASSERT_EQUAL(find16->data, 16);
+    passed &= ASSERT_EQUAL(find42->data, 42);
+    passed &= ASSERT_NULL(find80);    
+
+    free(tree);
+    return passed;
+}
+
+
 
 
 /******* END TESTS ************/
@@ -237,6 +263,10 @@ TestingSet * init_testing_set() {
         test_insert_multiple);     
     add_test(set, "test_insert_duplicate() attempts to insert duplicate values", GROUP_ADD, 
         test_insert_duplicate);    
+    add_test(set, "test_find() attempts to find a value in tree", GROUP_ADD, 
+        test_find);    
+
+        
     // add_test(set, "ll_add_front() adds a node to the front of the list", GROUP_ADD, 
     //    test_ll_add_front);  
     // add_test(set, "ll_add_back() adds a node to the back of the list", GROUP_ADD,
