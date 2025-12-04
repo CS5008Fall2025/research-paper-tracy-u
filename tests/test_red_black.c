@@ -179,9 +179,34 @@ bool test_insert_multiple() {
 }
 
 
-// test print
+// test insert - duplicate
+bool test_insert_duplicate() {
+    rbTree* tree = createTree();
 
-// test traversal
+    insert(tree, 17);
+    insert(tree, 10);
+    insert(tree, 100);
+    insert(tree, 17);
+
+    bool passed = true;
+    passed &= ASSERT_EQUAL(tree->root->data, 17);
+    passed &= ASSERT_EQUAL(tree->root->color, 'B');
+
+    passed &= ASSERT_EQUAL(tree->root->left->data, 10);
+    passed &= ASSERT_EQUAL(tree->root->left->color, 'R');
+
+    passed &= ASSERT_EQUAL(tree->root->right->data, 100);
+    passed &= ASSERT_EQUAL(tree->root->right->color, 'R');
+
+    passed &= ASSERT_NULL(tree->root->right->left);
+    passed &= ASSERT_NULL(tree->root->right->right);
+
+    passed &= ASSERT_NULL(tree->root->left->left);
+    passed &= ASSERT_NULL(tree->root->left->right);
+
+    free(tree);
+    return passed;
+}
 
 
 
@@ -210,7 +235,8 @@ TestingSet * init_testing_set() {
         test_insert_single); 
     add_test(set, "test_insert_multiple() inserts multiple values", GROUP_ADD, 
         test_insert_multiple);     
-
+    add_test(set, "test_insert_duplicate() attempts to insert duplicate values", GROUP_ADD, 
+        test_insert_duplicate);    
     // add_test(set, "ll_add_front() adds a node to the front of the list", GROUP_ADD, 
     //    test_ll_add_front);  
     // add_test(set, "ll_add_back() adds a node to the back of the list", GROUP_ADD,

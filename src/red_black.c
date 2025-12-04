@@ -63,18 +63,22 @@ rbNode* insertHelper(rbTree* tree, rbNode* root, int data) {
     else if (data < root->data) {
         root->left = insertHelper(tree, root->left, data);
         root->left->parent = root;
-        if (root != tree->root) { // TO FIX
+        if (root != tree->root) { 
             if (root->color == 'R' && root->left->color == 'R')
                 f = true;
         }
-    } else {
+    } else if (data > root->data) {
         root->right = insertHelper(tree, root->right, data);
         root->right->parent = root;
         if (root != tree->root) {
             if (root->color == 'R' && root->right->color == 'R')
                 f = true;
         }
+    } else {
+        // reject duplicates
+        return root;
     }
+
 
     // Perform rotations
     if (ll) {
@@ -145,35 +149,84 @@ void insert(rbTree* tree, int data) {
 
 
 // Helper function to print the tree
-void printTreeHelper(rbNode* root, int space) {
+void __printTree(rbNode* root, int space) {
     if (root != NULL) {
         space += 10;
-        printTreeHelper(root->right, space);
+        __printTree(root->right, space);
         printf("\n");
         for (int i = 10; i < space; i++)
             printf(" ");
         printf("%d\n", root->data);
-        printTreeHelper(root->left, space);
+        __printTree(root->left, space);
     }
 }
 
 void printTree(rbTree *tree) {
-    printTreeHelper(tree->root, 0);
+    __printTree(tree->root, 0);
 }
 
 // Helper function to perform Inorder Traversal
-void inorderTraversalHelper(rbNode* node) {
+void __inorderTraversal(rbNode* node) {
     if (node != NULL) {
-        inorderTraversalHelper(node->left);
+        __inorderTraversal(node->left);
         printf("%d ", node->data);
-        inorderTraversalHelper(node->right);
+        __inorderTraversal(node->right);
     }
 }
 
 // Function to perform Inorder Traversal of the tree
 void inorderTraversal(rbTree* tree) {
-    inorderTraversalHelper(tree->root);
+    __inorderTraversal(tree->root);
 }
+
+
+
+// /**
+//  * Helper function for getting a node from the BST.
+//  * Only returns the first movie with that title, does not look at ids.
+//  *
+//  * Makes use of strcasecmp to compare the titles. for example:
+//  * 
+//    if (strcasecmp(title, curr->movie->title) == 0) {
+//        return curr;
+//    }
+//  *
+//  * @param curr the current node
+//  * @param title the title of the movie to get, if
+//  * @return the first node that was found
+// */
+// rbNode* __find(rbNode * curr, int value) {
+//     if(curr == NULL){
+//         return NULL;
+//     }
+//    else if (strcasecmp(curr->movie->title, title) == 0) {
+//        return curr;
+//    }
+//    else if (strcasecmp(curr->movie->title, title) < 0) {
+//        return __find(curr->right, title);
+//    }
+//    else if (strcasecmp(curr->movie->title, title) > 0) {
+//        return __find(curr->left, title);
+//    }
+//    return NULL;
+// }
+
+// /**
+//  * Finds the given movie from the BST. 
+//  * 
+//  * Only returns the first movie with that title, does not look at ids.
+//  * 
+//  * @param bst the BST to get from
+//  * @param title the title of the movie to get
+//  * @return the movie that was found
+// */
+// Movie * bst_find(BST * bst, const char * title) {
+//     BSTNode * node = __bst__find(bst->root, title);
+//     if (node == NULL) {
+//         return NULL;
+//     }
+//     return node->movie;
+// }
 
 
 
