@@ -1,4 +1,7 @@
 /**
+ * Name: Tracy U
+ * CS 5008, Fall 2025
+ * 
  * A quick and dirty logging utility that only prints to stdout.
  * 
  * More advanced ones changes the log to vary 

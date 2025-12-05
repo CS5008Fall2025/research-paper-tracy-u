@@ -1,4 +1,9 @@
 /**
+ * Name: Tracy U
+ * CS 5008, Fall 2025
+ * 
+ * 
+ * Reference: From Speed Comparison Homework. 
  * Various functions for handling files.
  * 
  * @author Albert Lionelle
@@ -9,47 +14,7 @@
 
 #include <stdio.h>
 #include "logging.h"
-#include "../lib/movie.h"
-#include "../lib/vector.h"
 
-
-/**
- * Loads the input file into a vector of Movies.
- * 
- * It assumes that the input file is a movie title on each line.
- * 
- * 
- * For IDs, it will just use the line number.
- * 
- * @param filename The name of the file to load.
- * @return A vector of Movies. NULL if there is an error
-*/
-MovieVector * load_movies(const char* filename) {
-    LOG_INFO("Loading movies from file: %s into a MovieVector\n", filename);
-    MovieVector * movies = new_vector();
-    FILE * file = fopen(filename, "r");
-    if (file == NULL) {
-        LOG_ERROR("Could not open file: %s", filename);
-        return NULL; 
-    }
-    char * line = NULL;
-    size_t len = 0;
-    ssize_t read;
-    int id = 0;
-    while ((read = getline(&line, &len, file)) != -1) {
-        // remove the newline character
-        line[read-1] = '\0';
-        Movie * movie = new_movie(line, id);
-        vector_add_back(movies, movie);
-        id++;
-    }
-    fclose(file);
-    LOG_INFO("Loaded %d movies from file: %s\n", movies->size, filename)
-    if (line) {
-        free(line);
-    }
-    return movies;
-}
 
 /**
  * Initializes the results file with a header. This will either create
@@ -79,7 +44,8 @@ bool initialize_results_file(const char * filename, const char * header) {
  * 
  * @return true if the line was written successfully, false otherwise.
 */
-bool write_line(const char * filename, double * line, int length) {
+bool write_line(const char * filename, double* line, int length) {
+    
     FILE * file = fopen(filename, "a");
     if (file == NULL) {
         LOG_ERROR("Could not open file: %s", filename);

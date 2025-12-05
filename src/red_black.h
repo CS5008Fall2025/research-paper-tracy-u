@@ -1,4 +1,8 @@
-
+/**
+ * Name: Tracy U
+ * CS 5008, Fall 2025
+ * 
+ * */
 
 #include <stdlib.h>
 
@@ -24,11 +28,3 @@ void insert(rbTree* tree, int data);
 void printTree(rbTree* tree);
 void inorderTraversal(rbTree* tree);
 rbNode* find(rbTree* tree, int value);
-
-
-
-
-
-
-
-

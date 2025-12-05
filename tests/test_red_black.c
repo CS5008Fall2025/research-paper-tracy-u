@@ -1,13 +1,7 @@
 /**
- * Contains tests to test the linked list implementation.
+ * Name: Tracy U
+ * CS 5008, Fall 2025
  * 
- * STUDENT TODO: You should feel free to modify this file adding their own
- * tests if they feel any are missing. 
- * 
- * If you implemented a double linked list instead of as singled linked
- * list, this test file should still work. If it doesn't, please double
- * check your implementation that you haven't modified any of the core
- * functions/layout (such as head/tail naming, etc).
 */
 
 
@@ -19,9 +13,7 @@
 
 #define GROUP_GENERAL "GENERAL"
 #define GROUP_ADD "ADD"
-#define GROUP_REMOVE "REMOVE"
 #define GROUP_GET "GET"
-#define GROUP_TO_STRING "STRING"
 // setup a different group for strings since it involves different traversals
 
 
@@ -266,43 +258,11 @@ TestingSet * init_testing_set() {
     add_test(set, "test_find() attempts to find a value in tree", GROUP_ADD, 
         test_find);    
 
-        
-    // add_test(set, "ll_add_front() adds a node to the front of the list", GROUP_ADD, 
-    //    test_ll_add_front);  
-    // add_test(set, "ll_add_back() adds a node to the back of the list", GROUP_ADD,
-    //     test_ll_add_back); 
-    // add_test(set, "ll_insert() adds a node to the list at the given index", GROUP_ADD,
-    //     test_ll_insert); 
-    // add_test(set, "ll_insert() does nothing if the index is out of bounds", GROUP_ADD,
-    //     test_ll_insert_out_of_bounds); 
-    // add_test(set, "ll_remove_front() removes a node from the front of the list", GROUP_REMOVE,
-    //     test_ll_remove_front); 
-    // add_test(set, "ll_remove_back() removes a node from the back of the list", GROUP_REMOVE,
-    //     test_ll_remove_back); 
-    // add_test(set, "ll_remove() removes a node from the list at the given index", GROUP_REMOVE,
-    //     test_ll_remove); 
-    // add_test(set, "ll_remove() does nothing if the index is out of bounds", GROUP_REMOVE,
-    //     test_ll_remove_out_of_bounds); 
-    // add_test(set, "ll_get() gets a node from the list at the given index", GROUP_GET,
-    //     test_ll_get); 
-    // add_test(set, "ll_get() does nothing if the index is out of bounds", GROUP_GET,
-    //     test_ll_get_out_of_bounds); 
-    // add_test(set, "ll_is_empty() returns true if the list is empty", GROUP_GENERAL,
-    //     test_ll_is_empty); 
-    // add_test(set, "ll_to_str() returns a string representation of the list", GROUP_GENERAL,
-    //     test_ll_to_str); 
-    // add_test(set, "add_to_sorted_list() adds a movie to the sorted list", GROUP_SORTED,
-    //     test_sorted_list_add);
-    // add_test(set, "find_in_sorted_list() finds a movie in the sorted list", GROUP_SORTED,
-    //     test_sorted_list_find);
-    // add_test(set, "sorted_list_remove() properly removes movies based on title", GROUP_SORTED,
-    //     test_sorted_list_remove);
-
     return set;
 }
 
 /**
- * Runs the tests for the linked list implementation.
+ * Runs the tests 
  * 
  * @param start_test the test to start running from
  * @param end_test the test to stop running at
@@ -328,11 +288,6 @@ int main(const int argc, const char *argv[]) {
         run_tests_group(set, (char *)group_tag);
     }
  
-
-
-
-    // this has to be done separately because movies are used across multiple lists
-    // free_movies();
-    // free_testing_set(set);
+    free_testing_set(set);
     return 0;
 }

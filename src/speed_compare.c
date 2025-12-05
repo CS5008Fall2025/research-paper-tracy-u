@@ -1,4 +1,8 @@
 /**
+ * Name: Tracy U
+ * CS 5008, Fall 2025
+ * 
+ * 
  * This program compares the speed of the 
  * SortedLinkedList, SortedVector, and BST implementations
  * 
@@ -22,18 +26,15 @@
 #include "defaults.h"
 #include "tests.h"
 #include "file_handler.h"
-#include "../lib/vector.h"
 
 
 /**
  * This is a helper function to print the help message
 */
 void print_help() {
-    printf("Usage: ./speed_compare [OPTIONS] input_file\n");
+    printf("Usage: ./speed_results [OPTIONS] input_file\n");
 
-    printf("This program compares the speed of the SortedLinkedList, SortedVector, and BST implementations\n");
-
-    printf("Input file (required): a file with movie titles listed on each line.\n");
+    printf("This program tracks the speed of redblack tree\n");
 
     printf("Options:\n");
     printf("  -h, --help\t\t\tPrints this help message. Ends the program.\n");
@@ -46,7 +47,7 @@ void print_help() {
 
     printf("\n\n");
     printf("Example Usage:\n");
-    printf("  ./speed_compare -v -o results.csv movie_titles_us_unique.txt\n");
+    printf("  ./speed_results -v -o results.csv \n");
 }
 
 /** 
@@ -98,15 +99,18 @@ int is_int(const char *str)
  * 
 */
 const char * process_args(const int argc, const char** argv) {
-    const char * input_file = NULL;
+    // const char * input_file = NULL;
     for (int i = 0; i < argc; i++) {
+        // determine debug level
         if (strcmp(argv[i], "-d") == 0 || strcmp(argv[i], "--debug") == 0) {
             LOG_LEVEL = LOG_LEVEL_DEBUG;
             LOG_DEBUG("Logging level set to Debug\n");
+        // determine verbose level
         } else if ((strcmp(argv[i], "-v") == 0 || strcmp(argv[i], "--verbose") == 0) 
                     && LOG_LEVEL != LOG_LEVEL_DEBUG){
             LOG_LEVEL = LOG_LEVEL_INFO;
             LOG_DEBUG("Logging level set to info (verbose).\n");
+        // determine output file
         } else if (strcmp(argv[i], "-o") == 0 || strcmp(argv[i], "--output") == 0) {
             if(i + 1 < argc  && argv[i + 1][0] != '-') {
                 OUTPUT_FILE = argv[++i]; // force increment to get the next argument
@@ -114,6 +118,7 @@ const char * process_args(const int argc, const char** argv) {
             } else {
                 LOG_WARN("No output file provided, keeping default.\n");
             }
+        // determine increment 
         } else if (strcmp(argv[i], "-i") == 0 || strcmp(argv[i], "--increment") == 0) {
             if(i + 1 < argc) {
                 if (is_int(argv[i+1])) {
@@ -125,12 +130,14 @@ const char * process_args(const int argc, const char** argv) {
             } else {
                 LOG_WARN("No increment provided, keeping default.\n");
             }
-        } else {
-            input_file = argv[i];
+        // } else {
+        //     input_file = argv[i];
         }
     }
-    return input_file;
+    return NULL;
 }
+
+
 
 
 /**
@@ -140,31 +147,32 @@ const char * process_args(const int argc, const char** argv) {
  * @param argv the arguments
 */
 int main(int argc, const char** argv) {
-    if (argc < 2)
-    {
-        LOG_ERROR("Missing input files\n");
-        print_help();
-        return 1; // ends with an error signal
-    }
+    // if (argc < 2)
+    // {
+    //     LOG_ERROR("Missing input files\n");
+    //     print_help();
+    //     return 1; // ends with an error signal
+    // }
     if(check_for_help(argc, argv)) {
         print_help();
         return 0; // ends the program early, but successfully
     }
 
-    const char* input_file = process_args(argc, argv);
-    if(input_file == NULL) {
-        LOG_ERROR("No input file provided\n");
-        print_help();
-        return 1; // ends with an error signal
-    }
-    LOG_INFO("Starting Speed Compare: Input File: %s, Output File: %s, Testing Increments: %d\n", 
-        input_file, OUTPUT_FILE, INCREMENT);
+    // TODO - update funciotn to void
+    process_args(argc, argv); // this will return null
+    // if(input_file == NULL) {
+    //     LOG_ERROR("No input file provided\n");
+    //     print_help();
+    //     return 1; // ends with an error signal
+    // }
+    LOG_INFO("Starting Speed Compare: Output File: %s, Testing Increments: %d\n", 
+         OUTPUT_FILE, INCREMENT);
 
-    MovieVector *movies = load_movies(input_file);
-    if(movies == NULL) {
-        return 1; // error printed in load_movies, but ending program as vector needs to exist
-    }
-
+    // MovieVector *movies = load_movies(input_file);
+    // if(movies == NULL) {
+    //     return 1; // error printed in load_movies, but ending program as vector needs to exist
+    // }
+     
 
     // initialize output file
     bool check = initialize_results_file(OUTPUT_FILE, CSV_HEADER);
@@ -176,23 +184,27 @@ int main(int argc, const char** argv) {
 
     double *results = (double *)malloc(sizeof(double) * RESULTS_LENGTH);
 
-    for(int n = INCREMENT; n < movies->size; n += INCREMENT) {
+    // generate random array 
+    int *values = get_random_array(TEST_SIZE);
+
+
+    for(int n = INCREMENT; n < TEST_SIZE; n += INCREMENT) {
         memset(results, 0, sizeof(double) * RESULTS_LENGTH); // reset results array
         results[0] = n; 
-        run_tests(movies, n, results); // run the tests with the current number of movies
+        run_tests(values, n, results); // run the tests with the current number of movies
         write_line(OUTPUT_FILE, results, RESULTS_LENGTH); // write the number of movies to the file
     }
 
     memset(results, 0, sizeof(double) * RESULTS_LENGTH); // reset results array
-    results[0] = movies->size-1; // final run with the full vector as increment may skip the last one
-    run_tests(movies, movies->size-1, results); // run the tests with the full movies vector
+    results[0] = TEST_SIZE-1; // final run with the full vector as increment may skip the last one
+    run_tests(values, TEST_SIZE-1, results); // run the tests with the full movies vector
     write_line(OUTPUT_FILE, results, RESULTS_LENGTH); // write the number of movies to the file
     
-    LOG_INFO("Finished writing %s with %d lines\n", OUTPUT_FILE, movies->size / INCREMENT + 1);
+    LOG_INFO("Finished writing %s with %d lines\n", OUTPUT_FILE, TEST_SIZE / INCREMENT + 1);
     LOG_INFO("Testing completed successfully\n");
 
 
     // clean up memory
-    free_vector(movies);
+    free(values);
     free(results);
 }

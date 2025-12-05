@@ -1,4 +1,10 @@
-// reference: https://www.geeksforgeeks.org/dsa/insertion-in-red-black-tree/
+/**
+ * Name: Tracy U
+ * CS 5008, Fall 2025
+ * 
+ * reference: https://www.geeksforgeeks.org/dsa/insertion-in-red-black-tree/
+ * 
+ */
 
 #include "red_black.h"
 #include <stdbool.h>
