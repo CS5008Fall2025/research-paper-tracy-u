@@ -2,13 +2,9 @@
  * Name: Tracy U
  * CS 5008, Fall 2025
  * 
- * 
- * This program compares the speed of the 
- * SortedLinkedList, SortedVector, and BST implementations
+ * Reference: From Speed Compare homework
  * 
  * This is the main driver for the program.
- * 
- * Use it to help you answer the questions in the homework.
  * 
  * @author Albert Lionelle
  * 
@@ -89,17 +85,13 @@ int is_int(const char *str)
 }
 
 /**
- * Parse arguments.
- *  Looks for the flags, and set them, and returns the final input file
- *  If the input file is not found, returns NULL
+ * Parse arguments. Looks for the flags, and sets them.
  * 
  * @param argc the number of arguments
  * @param argv the arguments
- * @return the input file if found, NULL otherwise
  * 
 */
-const char * process_args(const int argc, const char** argv) {
-    // const char * input_file = NULL;
+void process_args(const int argc, const char** argv) {
     for (int i = 0; i < argc; i++) {
         // determine debug level
         if (strcmp(argv[i], "-d") == 0 || strcmp(argv[i], "--debug") == 0) {
@@ -137,42 +129,21 @@ const char * process_args(const int argc, const char** argv) {
     return NULL;
 }
 
-
-
-
 /**
- * Main entry point. Checks arguments, loads the movies, and runs the tests.
+ * Main entry point. Checks arguments, and runs the tests.
  * 
  * @param argc the number of arguments
  * @param argv the arguments
 */
 int main(int argc, const char** argv) {
-    // if (argc < 2)
-    // {
-    //     LOG_ERROR("Missing input files\n");
-    //     print_help();
-    //     return 1; // ends with an error signal
-    // }
     if(check_for_help(argc, argv)) {
         print_help();
         return 0; // ends the program early, but successfully
     }
 
-    // TODO - update funciotn to void
-    process_args(argc, argv); // this will return null
-    // if(input_file == NULL) {
-    //     LOG_ERROR("No input file provided\n");
-    //     print_help();
-    //     return 1; // ends with an error signal
-    // }
+    process_args(argc, argv); 
     LOG_INFO("Starting Speed Compare: Output File: %s, Testing Increments: %d\n", 
          OUTPUT_FILE, INCREMENT);
-
-    // MovieVector *movies = load_movies(input_file);
-    // if(movies == NULL) {
-    //     return 1; // error printed in load_movies, but ending program as vector needs to exist
-    // }
-     
 
     // initialize output file
     bool check = initialize_results_file(OUTPUT_FILE, CSV_HEADER);
@@ -186,7 +157,6 @@ int main(int argc, const char** argv) {
 
     // generate random array 
     int *values = get_random_array(TEST_SIZE);
-
 
     for(int n = INCREMENT; n < TEST_SIZE; n += INCREMENT) {
         memset(results, 0, sizeof(double) * RESULTS_LENGTH); // reset results array
@@ -202,7 +172,6 @@ int main(int argc, const char** argv) {
     
     LOG_INFO("Finished writing %s with %d lines\n", OUTPUT_FILE, TEST_SIZE / INCREMENT + 1);
     LOG_INFO("Testing completed successfully\n");
-
 
     // clean up memory
     free(values);

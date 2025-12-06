@@ -15,6 +15,6 @@
 
 const char * OUTPUT_FILE = "output.csv";
 int INCREMENT = 1000;
-int TEST_SIZE = 1000000;
+int TEST_SIZE = 2500000;
 
 #endif

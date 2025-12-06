@@ -15,7 +15,13 @@ bool rr; // Right-Right Rotation flag
 bool lr; // Left-Right Rotation flag
 bool rl; // Right-Left Rotation flag
 
-//  function to create node
+
+/**
+ * Creates a red black node.
+ * 
+ * @param data the value to store in the node
+ * @return the newly created node, or NULL if memory allocation error
+*/
 rbNode* createNode(int data) {
     struct rbNode *newNode = (struct rbNode *)malloc(sizeof(struct rbNode));
     if (newNode == NULL) {
@@ -29,13 +35,28 @@ rbNode* createNode(int data) {
     return newNode;
 }
 
+
+/**
+ * Creates an empty red black tree.
+ * 
+ * @return the newly created tree, or NULL if memory allocation error
+*/
 rbTree* createTree() {
     struct rbTree *newTree = (struct rbTree *)malloc(sizeof(struct rbTree));
+    if (newTree == NULL) {
+        return NULL;
+    }
     newTree->root = NULL;
     return newTree;
 }
 
-// Function to perform Left Rotation
+
+/**
+ * Rotates a node left
+ * 
+ * @param node the node to rotate left
+ * @return the rotated node
+*/
 rbNode* rotateLeft(rbNode* node) {
     rbNode* x = node->right;
     rbNode* y = x->left;
@@ -47,7 +68,12 @@ rbNode* rotateLeft(rbNode* node) {
     return x;
 }
 
-// Function to perform Right Rotation
+/**
+ * Rotates a node right
+ * 
+ * @param node the node to rotate right
+ * @return the rotated node
+*/
 rbNode* rotateRight(rbNode* node) {
     rbNode* x = node->left;
     rbNode* y = x->right;
@@ -60,21 +86,28 @@ rbNode* rotateRight(rbNode* node) {
 }
 
 
-// Helper function for insertion
-rbNode* insertHelper(rbTree* tree, rbNode* root, int data) {
+/**
+ * A helper function that inserts data into the red black tree
+ * 
+ * @param tree the tree to insert the data into 
+ * @param root the node to start with
+ * @param data the data to insert
+ * @return the root node of the tree
+*/
+rbNode* __insert(rbTree* tree, rbNode* root, int data) {
     bool f = false; // Flag to check RED-RED conflict
 
     if (root == NULL)
         return createNode(data);
     else if (data < root->data) {
-        root->left = insertHelper(tree, root->left, data);
+        root->left = __insert(tree, root->left, data);
         root->left->parent = root;
         if (root != tree->root) { 
             if (root->color == 'R' && root->left->color == 'R')
                 f = true;
         }
     } else if (data > root->data) {
-        root->right = insertHelper(tree, root->right, data);
+        root->right = __insert(tree, root->right, data);
         root->right->parent = root;
         if (root != tree->root) {
             if (root->color == 'R' && root->right->color == 'R')
@@ -145,19 +178,30 @@ rbNode* insertHelper(rbTree* tree, rbNode* root, int data) {
     return root;
 }
 
+
+/**
+ * Inserts data into the red black tree
+ * 
+ * @param tree the tree to insert the data into 
+ * @param data the data to insert
+*/
 void insert(rbTree* tree, int data) {
     if (tree->root == NULL) {
         tree->root = createNode(data);
         tree->root->color = 'B';
     } else
-        tree->root = insertHelper(tree, tree->root, data);
+        tree->root = __insert(tree, tree->root, data);
 }
 
-
-// Helper function to print the tree
+/**
+ * A helper function to print the red black tree
+ * 
+ * @param root the root of the tree
+ * @param space the space
+*/
 void __printTree(rbNode* root, int space) {
     if (root != NULL) {
-        space += 10;
+        space += 10; // TODO
         __printTree(root->right, space);
         printf("\n");
         for (int i = 10; i < space; i++)
@@ -167,11 +211,20 @@ void __printTree(rbNode* root, int space) {
     }
 }
 
+/**
+ * Prints a red black tree
+ * 
+ * @param tree The red black tree to print
+*/
 void printTree(rbTree *tree) {
     __printTree(tree->root, 0);
 }
 
-// Helper function to perform Inorder Traversal
+/**
+ * A helper function to print an in order traversal of the tree
+ * 
+ * @param node The node to print
+*/
 void __inorderTraversal(rbNode* node) {
     if (node != NULL) {
         __inorderTraversal(node->left);
@@ -180,7 +233,11 @@ void __inorderTraversal(rbNode* node) {
     }
 }
 
-// Function to perform Inorder Traversal of the tree
+/**
+ * Prints an in order traversal of the tree
+ * 
+ * @param tree The red black tree to print
+*/
 void inorderTraversal(rbTree* tree) {
     __inorderTraversal(tree->root);
 }
@@ -188,11 +245,9 @@ void inorderTraversal(rbTree* tree) {
 
 
 /**
- * Referece: Speed Comaparison Homework
  * Helper function for getting a node from the redblack tree.
  *
- * Referece: Speed Comaparison Homework
-
+ * Reference: Speed Comaparison Homework
  *
  * @param curr the current node
  * @param value the value to search for
@@ -217,6 +272,8 @@ rbNode* __find(rbNode * curr, int value) {
 /**
  * Finds the given node from the rbTree. 
  * 
+ *  Reference: Speed Comaparison Homework
+ * 
  * @param tree the tree to get from
  * @param title the value to get
  * @return the node that was found
@@ -228,34 +285,3 @@ rbNode* find(rbTree* tree, int value) {
     }
     return node;
 }
-
-
-
-// int main() {
-
-//     rbTree *tree = createTree();
-//     printf("print empty tree:\n");
-//     printTree(tree);
-
-//     rbNode *node = createNode(100);
-//     printf("node: %d\n", node->data);
-
-//     tree->root = node;
-
-//     printf("print tree with node:\n");
-//     printTree(tree);
-
-//     rbTree* tree2 = createTree();
-//     int arr[] = {1, 4, 6, 3, 5, 7, 8, 2, 9};
-//         for (int i = 0; i < 9; i++) {
-//             insert(tree2, arr[i]);
-//         }
-    
-//     printTree(tree2);
-//     inorderTraversal(tree2);
-//     printf("\nroot tree2: %d\n", tree2->root->data);
-
-//     return 0;
-// }
-
-

@@ -1,4 +1,8 @@
 /**
+ * Name: Tracy U
+ * CS 5008, Fall 2025
+ * 
+ * Reference from previous assignments and homework: 
  * Contains some utility functions and DEFINEs to make testing easier in C.
  * 
  * Written for CS 5008 @ Northeastern University

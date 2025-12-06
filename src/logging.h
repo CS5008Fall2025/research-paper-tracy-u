@@ -2,24 +2,11 @@
  * Name: Tracy U
  * CS 5008, Fall 2025
  * 
- * A quick and dirty logging utility that only prints to stdout.
- * 
- * More advanced ones changes the log to vary 
- * which print stream it uses, and allows logging
- * to files. Logging is very common for long running applications
- * and is a good way to debug and see what is going on. However,
- * the log files can be very large, so more advanced logging
- * will often clear the log file after a certain size, or
- * only keep the last X number of lines. 
- * 
- * One can then grep (search) the logging file to find certain
- * messages. 
+ * Reference: From previous assignments
  * 
  * @author Albert Lionelle
  * 
  * Written for CS 5008 @ Northeastern University
- * 
- * 
 */
 
 
