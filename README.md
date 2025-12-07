@@ -18,17 +18,17 @@ This report discusses the red black tree, which is a self-balancing binary searc
 
 Binary Search trees can be a more efficient data structure than linear data structures. However, in the worst case — when data is already sorted, for example — the tree can essentially become a linear structure. Self-balancing trees address this challenge using various approaches to ensure that a tree does not become unbalanced. 
 
-The origin of the red black tree traces back to 1972, when Rudolf Bayer invented a data structure called a “symmetric binary B-tree”; it was later popularized as a “2-3” tree. These trees “all paths from root to leaf with the same number of nodes.” Later,  Leonidas J. Guibas and Robert Sedgewick built upon the symmetric binary B-tree to create the red black tree. [2] 
+The origin of the red black tree traces back to 1972, when Rudolf Bayer invented a data structure called a “symmetric binary B-tree”; it was later popularized as a “2-3” tree. These trees “all paths from root to leaf with the same number of nodes.” Later,  Leonidas J. Guibas and Robert Sedgewick built upon the symmetric binary B-tree to create the red black tree. [^2] 
 
-Since then, red black trees have been used across programming languages— for example, TreeSet, TreeMap, and HashMap implementations in Java all utilize red black trees. [3] 
+Since then, red black trees have been used across programming languages— for example, TreeSet, TreeMap, and HashMap implementations in Java all utilize red black trees. [^3] 
 
 ## Analysis of Red-Black Trees
 
-The space complexity of a red black tree is $O(n)$, like a Binary Search Tree. In addition to storing its data, each node also stores pointers to its parent and its left and right children. A red-black tree additionally requires its nodes to store their color (red or black). Because there are just two color options, tracking the color of each node only requires one additional bit of space. [2] 
+The space complexity of a red black tree is $O(n)$, like a Binary Search Tree. In addition to storing its data, each node also stores pointers to its parent and its left and right children. A red-black tree additionally requires its nodes to store their color (red or black). Because there are just two color options, tracking the color of each node only requires one additional bit of space. [^2] 
 
 **Time Complexity:**
 
-The time complexity of Search, Insert, and Delete is $O(\log n)$ as a result of the tree being balanced. [2]
+The time complexity of Search, Insert, and Delete is $O(\log n)$ as a result of the tree being balanced. [^2]
 
 | **Function** | **Amortized**  | **Worst Case** |
 | --- | --- | --- |
@@ -103,7 +103,7 @@ A binary search tree can lose its efficiency advantage if the data inserted into
 
 Worst case: Sorted
 
-[4]
+[^4]
 
 ![Worst case: Adversarial ](Red-Black%20Trees%20Research%20Paper/Screenshot_2025-12-07_at_3.02.46_PM.png)
 
@@ -112,22 +112,20 @@ Worst case: Adversarial
 A red black tree is one type of self-balancing tree that prevents these scenarios from occurring. Thanks to its self-balancing properties, a red black tree’s height is logarithmic. This maintains the tree’s efficiency. For example, inserting the sorted list into a red black tree would produce the following (see below). 
 
 ![Screenshot 2025-12-07 at 3.34.23 PM.png](Red-Black%20Trees%20Research%20Paper/Screenshot_2025-12-07_at_3.34.23_PM.png)
-
-[5]
+[^5]
 
 Its efficient implementation has kept the red black tree in use across programming languages and use cases: 
 
 - Red black trees are used in Java’s TreeMap, HashMap and TreeSet implementations
 - Red black trees are used in managing some file and directory structures
 - Red black trees are used for collision detection in graphics and game development.
-
-[6]
+[^6]
 
 ## Implementation
 
 The red black tree was implemented in C, using standard libraries. I based my code off code that was written in C++ and converted that to C with some slight modifications.
 
-The key challenge I faced when implementing the code was understanding various conditions that were possible upon insertion and which actions they would require to fix violations of the red black tree properties.  It also mentally took some time to wrap my head around the idea of what rotation meant. [6] 
+The key challenge I faced when implementing the code was understanding various conditions that were possible upon insertion and which actions they would require to fix violations of the red black tree properties.  It also mentally took some time to wrap my head around the idea of what rotation meant. [^6] 
 
 To walk through an example, here is `rotateLeft` function. 
 
@@ -160,9 +158,7 @@ In Step 2, the node is rotated left, updating the left pointer for node `15` to 
 
 In Step 3, the `10` node is repainted from black to red, and the `15` node is repainted from red to black. 
 
-![Screenshot 2025-12-07 at 2.20.44 PM.png](Red-Black%20Trees%20Research%20Paper/Screenshot_2025-12-07_at_2.20.44_PM.png)
-
-[5]
+![Screenshot 2025-12-07 at 2.20.44 PM.png](Red-Black%20Trees%20Research%20Paper/Screenshot_2025-12-07_at_2.20.44_PM.png)[^5]
 
 In terms of the rest of the implementation of the code, after the rotation and insertion, the code was relatively straightforward, following the patterns used in previous implementations of print, search, and traversing binary search trees. 
 
@@ -174,14 +170,14 @@ Through this project, I gained an understanding of self-balancing trees generall
 
 ### References:
 
-[1] GeeksforGeeks. 2025. Red-Black Tree definition & meaning in DSA. Retrieved December 7, 2025 from [https://www.geeksforgeeks.org/dsa/red-black-tree-definition-meaning-in-dsa/](https://www.geeksforgeeks.org/dsa/red-black-tree-definition-meaning-in-dsa/)
+[^1] GeeksforGeeks. 2025. Red-Black Tree definition & meaning in DSA. Retrieved December 7, 2025 from [https://www.geeksforgeeks.org/dsa/red-black-tree-definition-meaning-in-dsa/](https://www.geeksforgeeks.org/dsa/red-black-tree-definition-meaning-in-dsa/)
 
-[2] Wikipedia contributors. 2025. Red–black tree. Wikipedia, The Free Encyclopedia. Retrieved December 7, 2025 from [https://en.wikipedia.org/wiki/Red–black_tree](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree)
+[^2] Wikipedia contributors. 2025. Red–black tree. Wikipedia, The Free Encyclopedia. Retrieved December 7, 2025 from [https://en.wikipedia.org/wiki/Red–black_tree](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree)
 
-[3] Baeldung. Red-Black Trees Applications. Retrieved December 7, 2025 from [https://www.baeldung.com/cs/red-black-trees-applications](https://www.baeldung.com/cs/red-black-trees-applications)
+[^3] Baeldung. Red-Black Trees Applications. Retrieved December 7, 2025 from [https://www.baeldung.com/cs/red-black-trees-applications](https://www.baeldung.com/cs/red-black-trees-applications)
 
-[4] David Galles. Data Structure Visualizations: Binary Search Tree. University of San Francisco. Retrieved December 7, 2025 from [https://www.cs.usfca.edu/~galles/visualization/BST.html](https://www.cs.usfca.edu/~galles/visualization/BST.html)
+[^4] David Galles. Data Structure Visualizations: Binary Search Tree. University of San Francisco. Retrieved December 7, 2025 from [https://www.cs.usfca.edu/~galles/visualization/BST.html](https://www.cs.usfca.edu/~galles/visualization/BST.html)
 
-[5] David Galles. Data Structure Visualizations: Red-Black Tree. University of San Francisco. Retrieved December 7, 2025 from [https://www.cs.usfca.edu/~galles/visualization/RedBlack.html](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html)
+[^5] David Galles. Data Structure Visualizations: Red-Black Tree. University of San Francisco. Retrieved December 7, 2025 from [https://www.cs.usfca.edu/~galles/visualization/RedBlack.html](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html)
 
-[6] GeeksforGeeks. 2025. Introduction to Red-Black Tree. Retrieved December 7, 2025 from [https://www.geeksforgeeks.org/dsa/introduction-to-red-black-tree/](https://www.geeksforgeeks.org/dsa/introduction-to-red-black-tree/)
+[^6] GeeksforGeeks. 2025. Introduction to Red-Black Tree. Retrieved December 7, 2025 from [https://www.geeksforgeeks.org/dsa/introduction-to-red-black-tree/](https://www.geeksforgeeks.org/dsa/introduction-to-red-black-tree/)
