@@ -14,21 +14,21 @@ This report discusses the red black tree, which is a self-balancing binary searc
 - The root node is always black and each node can be either black or red.
 - Every leaf node of the red-black tree is black.
 - The children of red nodes are black.
-- The number of black nodes will be the same for every simple path from the root to the descendant leaf node. [^1]
+- The number of black nodes will be the same for every simple path from the root to the descendant leaf node.[^1]
 
 Binary Search trees can be a more efficient data structure than linear data structures. However, in the worst case — when data is already sorted, for example — the tree can essentially become a linear structure. Self-balancing trees address this challenge using various approaches to ensure that a tree does not become unbalanced. 
 
-The origin of the red black tree traces back to 1972, when Rudolf Bayer invented a data structure called a “symmetric binary B-tree”; it was later popularized as a “2-3” tree. These trees “all paths from root to leaf with the same number of nodes.” Later,  Leonidas J. Guibas and Robert Sedgewick built upon the symmetric binary B-tree to create the red black tree. [^2] 
+The origin of the red black tree traces back to 1972, when Rudolf Bayer invented a data structure called a “symmetric binary B-tree”; it was later popularized as a “2-3” tree. These trees “all paths from root to leaf with the same number of nodes.” Later,  Leonidas J. Guibas and Robert Sedgewick built upon the symmetric binary B-tree to create the red black tree.[^2] 
 
-Since then, red black trees have been used across programming languages— for example, TreeSet, TreeMap, and HashMap implementations in Java all utilize red black trees. [^3] 
+Since then, red black trees have been used across programming languages— for example, TreeSet, TreeMap, and HashMap implementations in Java all utilize red black trees.[^3] 
 
 ## Analysis of Red-Black Trees
 
-The space complexity of a red black tree is $O(n)$, like a Binary Search Tree. In addition to storing its data, each node also stores pointers to its parent and its left and right children. A red-black tree additionally requires its nodes to store their color (red or black). Because there are just two color options, tracking the color of each node only requires one additional bit of space. [^2] 
+The space complexity of a red black tree is $O(n)$, like a Binary Search Tree. In addition to storing its data, each node also stores pointers to its parent and its left and right children. A red-black tree additionally requires its nodes to store their color (red or black). Because there are just two color options, tracking the color of each node only requires one additional bit of space.[^2] 
 
 **Time Complexity:**
 
-The time complexity of Search, Insert, and Delete is $O(\log n)$ as a result of the tree being balanced. [^2]
+The time complexity of Search, Insert, and Delete is $O(\log n)$ as a result of the tree being balanced.[^2]
 
 | **Function** | **Amortized**  | **Worst Case** |
 | --- | --- | --- |
@@ -85,47 +85,42 @@ Table 1 shows the time required, in seconds, for Insert and find for $n$ element
 
 *Chart 1: Time to Find $n$ Elements in Red Black Tree* shows the growth in time to find $n$ elements in a red-black tree up to 2.5 million elements. The light blue line represents the time it took for each function to complete for $n$ elements from 0 to 2.5million in increments of 1,000, while the dark blue line is the trend line. The scale in this chart is logarithmic.
 
-![Chart 1_ Time to Find n Elements in Red Black Tree.png](Red-Black%20Trees%20Research%20Paper/Chart_1__Time_to_Find_n_Elements_in_Red_Black_Tree.png)
+![Chart 1_ Time to Find n Elements in Red Black Tree.png](report_visuals/Chart_1__Time_to_Find_n_Elements_in_Red_Black_Tree.png)
 
 *Chart 2: Time to Insert $n$ Elements in Red Black Tree* depicts the growth in time to find $n$ elements in a red-black tree up to 2.5 million elements. The light orange line represents the time it took for each function to complete for $n$ elements from 0 to 2.5million in increments of 1,000, while the dark orange line is the trend line. The scale in this chart is logarithmic.
 
-![Chart 2_ Time Insert n Elements in Red Black Tree (1).png](Red-Black%20Trees%20Research%20Paper/Chart_2__Time_Insert_n_Elements_in_Red_Black_Tree_(1).png)
+![Chart 2_ Time Insert n Elements in Red Black Tree (1).png](report_visuals/Chart_2__Time_Insert_n_Elements_in_Red_Black_Tree_(1).png)
 
 For reference, the following chart plots the same growth as plotted in Charts 1 and 2, with the addition of reference lines for the growth for $O(1)$, $O(n)$, $O(\log n)$, $O(n \log n)$, and $O(n^2)$. With scale, we can see truly how efficient the red black tree is. 
 
-![Chart 3_ Time to Find Insert and Find n Elements in Red Black Tree.png](Red-Black%20Trees%20Research%20Paper/Chart_3__Time_to_Find_Insert_and_Find_n_Elements_in_Red_Black_Tree.png)
+![Chart 3_ Time to Find Insert and Find n Elements in Red Black Tree.png](report_visuals/Chart_3__Time_to_Find_Insert_and_Find_n_Elements_in_Red_Black_Tree.png)
 
 ## Application
 
 A binary search tree can lose its efficiency advantage if the data inserted into it is already sorted, or mostly sorted, or if it is adversarial - meaning the numbers are alternatingly slotted into left and right nodes. See visual examples below. In these worst-case scenarios for a binary search tree, the time complexity becomes much more like a linked list.
 
-![Worst case: Sorted](Red-Black%20Trees%20Research%20Paper/Screenshot_2025-12-07_at_3.01.31_PM.png)
+![Worst case: Sorted](report_visuals/Screenshot_2025-12-07_at_3.01.31_PM.png)
+Worst case: Sorted[^4]
 
-Worst case: Sorted
-
-[^4]
-
-![Worst case: Adversarial ](Red-Black%20Trees%20Research%20Paper/Screenshot_2025-12-07_at_3.02.46_PM.png)
-
-Worst case: Adversarial 
+![Worst case: Adversarial](report_visuals/Screenshot_2025-12-07_at_3.02.46_PM.png)
+Worst case: Adversarial[^4]
 
 A red black tree is one type of self-balancing tree that prevents these scenarios from occurring. Thanks to its self-balancing properties, a red black tree’s height is logarithmic. This maintains the tree’s efficiency. For example, inserting the sorted list into a red black tree would produce the following (see below). 
 
-![Screenshot 2025-12-07 at 3.34.23 PM.png](Red-Black%20Trees%20Research%20Paper/Screenshot_2025-12-07_at_3.34.23_PM.png)
+![Screenshot 2025-12-07 at 3.34.23 PM.png](report_visuals/Screenshot_2025-12-07_at_3.34.23_PM.png)
 [^5]
 
 Its efficient implementation has kept the red black tree in use across programming languages and use cases: 
 
 - Red black trees are used in Java’s TreeMap, HashMap and TreeSet implementations
 - Red black trees are used in managing some file and directory structures
-- Red black trees are used for collision detection in graphics and game development.
-[^6]
+- Red black trees are used for collision detection in graphics and game development.[^6]
 
 ## Implementation
 
 The red black tree was implemented in C, using standard libraries. I based my code off code that was written in C++ and converted that to C with some slight modifications.
 
-The key challenge I faced when implementing the code was understanding various conditions that were possible upon insertion and which actions they would require to fix violations of the red black tree properties.  It also mentally took some time to wrap my head around the idea of what rotation meant. [^6] 
+The key challenge I faced when implementing the code was understanding various conditions that were possible upon insertion and which actions they would require to fix violations of the red black tree properties.  It also mentally took some time to wrap my head around the idea of what rotation meant.[^6] 
 
 To walk through an example, here is `rotateLeft` function. 
 
@@ -148,17 +143,17 @@ rbNode* rotateLeft(rbNode* node) {
 }
 ```
 
-Here is a visual example of a left rotation with nodes valued at `10` and `15`, and inserting a node with the value of `34`. 
+Here is a visual example[^5] of a left rotation with nodes valued at `10` and `15`, and inserting a node with the value of `34`. 
 
-![Screenshot 2025-12-07 at 2.20.20 PM.png](Red-Black%20Trees%20Research%20Paper/Screenshot_2025-12-07_at_2.20.20_PM.png)
+![Screenshot 2025-12-07 at 2.20.20 PM.png](report_visuals/Screenshot_2025-12-07_at_2.20.20_PM.png)
 
 In Step 2, the node is rotated left, updating the left pointer for node `15` to `10` and the right pointer to `34`, while removing the right pointer for node `10`. 
 
-![Screenshot 2025-12-07 at 2.33.53 PM.png](Red-Black%20Trees%20Research%20Paper/Screenshot_2025-12-07_at_2.33.53_PM.png)
+![Screenshot 2025-12-07 at 2.33.53 PM.png](report_visuals/Screenshot_2025-12-07_at_2.33.53_PM.png)
 
 In Step 3, the `10` node is repainted from black to red, and the `15` node is repainted from red to black. 
 
-![Screenshot 2025-12-07 at 2.20.44 PM.png](Red-Black%20Trees%20Research%20Paper/Screenshot_2025-12-07_at_2.20.44_PM.png)[^5]
+![Screenshot 2025-12-07 at 2.20.44 PM.png](report_visuals/Screenshot_2025-12-07_at_2.20.44_PM.png)
 
 In terms of the rest of the implementation of the code, after the rotation and insertion, the code was relatively straightforward, following the patterns used in previous implementations of print, search, and traversing binary search trees. 
 
