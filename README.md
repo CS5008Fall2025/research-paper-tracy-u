@@ -158,6 +158,18 @@ In Step 3, the `10` node is repainted from black to red, and the `15` node is re
 
 In terms of the rest of the implementation of the code, after the rotation and insertion, the code was relatively straightforward, following the patterns used in previous implementations of print, search, and traversing binary search trees. 
 
+The tests can be run using the following: 
+```
+make redblack-test 
+./test_redblack.out
+```
+
+The program can be run using the following: 
+```
+make speedtest
+./speed_results.out
+```
+
 ## Summary
 
 The red black tree is a self-balancing binary search tree that maintains its efficiency through balancing operations that maintain a logarithmic height. This report demonstrates how red black trees achieve O(log n) time complexity for insert and find functions through implementation, performance testing, and empirical data collection. 
