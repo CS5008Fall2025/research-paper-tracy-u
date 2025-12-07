@@ -99,11 +99,12 @@ For reference, the following chart plots the same growth as plotted in Charts 1 
 
 A binary search tree can lose its efficiency advantage if the data inserted into it is already sorted, or mostly sorted, or if it is adversarial - meaning the numbers are alternatingly slotted into left and right nodes. See visual examples below. In these worst-case scenarios for a binary search tree, the time complexity becomes much more like a linked list.
 
+**Worst case: Sorted[^4]**
 ![Worst case: Sorted](report_visuals/Screenshot_2025-12-07_at_3.01.31_PM.png)
-Worst case: Sorted[^4]
 
+**Worst case: Adversarial[^4]**
 ![Worst case: Adversarial](report_visuals/Screenshot_2025-12-07_at_3.02.46_PM.png)
-Worst case: Adversarial[^4]
+
 
 A red black tree is one type of self-balancing tree that prevents these scenarios from occurring. Thanks to its self-balancing properties, a red black tree’s height is logarithmic. This maintains the tree’s efficiency. For example, inserting the sorted list into a red black tree would produce the following (see below). 
 
