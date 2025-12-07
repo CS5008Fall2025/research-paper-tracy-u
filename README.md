@@ -1,4 +1,7 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/zBqi0PeJ)
+
+# Red-Black Trees Research Paper
+
 * Name: Tracy U
 * Semester: Fall 2025
 * Topic: Red-Black Trees
@@ -11,7 +14,7 @@ This report discusses the red black tree, which is a self-balancing binary searc
 - The root node is always black and each node can be either black or red.
 - Every leaf node of the red-black tree is black.
 - The children of red nodes are black.
-- The number of black nodes will be the same for every simple path from the root to the descendant leaf node. [1]
+- The number of black nodes will be the same for every simple path from the root to the descendant leaf node. [^1]
 
 Binary Search trees can be a more efficient data structure than linear data structures. However, in the worst case — when data is already sorted, for example — the tree can essentially become a linear structure. Self-balancing trees address this challenge using various approaches to ensure that a tree does not become unbalanced. 
 
