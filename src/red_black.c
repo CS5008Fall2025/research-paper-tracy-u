@@ -285,3 +285,25 @@ rbNode* find(rbTree* tree, int value) {
     }
     return node;
 }
+
+/**
+ * Helper function to free the tree and its nodes. 
+ * 
+ * @param node the node
+*/
+void __freeTree(rbNode* node) {
+    if (node != NULL) {
+        __freeTree(node->left);
+        free(node);
+        __freeTree(node->right);
+    }
+}
+
+/**
+ * Free the tree and its nodes. 
+ * 
+ * @param tree the tree to get from
+*/
+void freeTree(rbTree* tree) {
+    __freeTree(tree->root);
+}

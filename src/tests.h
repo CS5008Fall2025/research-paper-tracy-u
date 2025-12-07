@@ -91,8 +91,8 @@ void search_tree(rbTree* tree, int* values, int length, double *results){
 /**
  * Runs all tests, entry function to running the tests
  *
- * @param values the MovieVector to act as the TestSet
- * @param length the total number of movies to pull from MovieVector
+ * @param values the values 
+ * @param length the total length of the array
  * @param results array of doubles to store the results in
  */
 void run_tests(int* values, int length, double *results) {
@@ -101,14 +101,14 @@ void run_tests(int* values, int length, double *results) {
     LOG_INFO("Running Tests on %d values\n", length);
     rbTree* tree = createTree();
 
-    // add movies to each data structure
+    // add values to tree
     add_nodes(tree, values, length, results);
 
-    // search for movies in each data structure
+    // search for values in tree
     search_tree(tree, values, length, results);
 
-    // free data structures (just free, no need to remove movies from them)
-    free(tree); 
+    // free data structures
+    freeTree(tree);
    
     LOG_INFO("Finished running tests\n\n");
 }

@@ -28,3 +28,4 @@ void insert(rbTree* tree, int data);
 void printTree(rbTree* tree);
 void inorderTraversal(rbTree* tree);
 rbNode* find(rbTree* tree, int value);
+void freeTree(rbTree* tree);

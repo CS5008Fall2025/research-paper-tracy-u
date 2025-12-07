@@ -38,7 +38,7 @@ void print_help() {
     printf("  -d, --debug\t\t\tPrints debug information about the program. Setting debug will also enable verbose.\n");
     printf("  -o, --output [FILE]\t\tPrints the test output to the given file, assumes CSV format. Defaults to %s if not provided.\n", 
            OUTPUT_FILE);
-    printf("  -i, --increment [NUM]\t\tSets the increment amount for the number of movies to test. Defaults to %d if not provided.\n",
+    printf("  -i, --increment [NUM]\t\tSets the increment amount for the number of vlaues to test. Defaults to %d if not provided.\n",
            INCREMENT);
 
     printf("\n\n");
@@ -122,11 +122,8 @@ void process_args(const int argc, const char** argv) {
             } else {
                 LOG_WARN("No increment provided, keeping default.\n");
             }
-        // } else {
-        //     input_file = argv[i];
         }
     }
-    return NULL;
 }
 
 /**
@@ -161,14 +158,14 @@ int main(int argc, const char** argv) {
     for(int n = INCREMENT; n < TEST_SIZE; n += INCREMENT) {
         memset(results, 0, sizeof(double) * RESULTS_LENGTH); // reset results array
         results[0] = n; 
-        run_tests(values, n, results); // run the tests with the current number of movies
-        write_line(OUTPUT_FILE, results, RESULTS_LENGTH); // write the number of movies to the file
+        run_tests(values, n, results); // run the tests with the current number of values
+        write_line(OUTPUT_FILE, results, RESULTS_LENGTH); // write the number of values to the file
     }
 
     memset(results, 0, sizeof(double) * RESULTS_LENGTH); // reset results array
     results[0] = TEST_SIZE-1; // final run with the full vector as increment may skip the last one
-    run_tests(values, TEST_SIZE-1, results); // run the tests with the full movies vector
-    write_line(OUTPUT_FILE, results, RESULTS_LENGTH); // write the number of movies to the file
+    run_tests(values, TEST_SIZE-1, results); // run the tests with the full values vector
+    write_line(OUTPUT_FILE, results, RESULTS_LENGTH); // write the number of values to the file
     
     LOG_INFO("Finished writing %s with %d lines\n", OUTPUT_FILE, TEST_SIZE / INCREMENT + 1);
     LOG_INFO("Testing completed successfully\n");
