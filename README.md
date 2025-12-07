@@ -165,14 +165,14 @@ Through this project, I gained an understanding of self-balancing trees generall
 
 ### References:
 
-[^1] GeeksforGeeks. 2025. Red-Black Tree definition & meaning in DSA. Retrieved December 7, 2025 from [https://www.geeksforgeeks.org/dsa/red-black-tree-definition-meaning-in-dsa/](https://www.geeksforgeeks.org/dsa/red-black-tree-definition-meaning-in-dsa/)
+[^1]: GeeksforGeeks. 2025. Red-Black Tree definition & meaning in DSA. Retrieved December 7, 2025 from [https://www.geeksforgeeks.org/dsa/red-black-tree-definition-meaning-in-dsa/](https://www.geeksforgeeks.org/dsa/red-black-tree-definition-meaning-in-dsa/)
 
-[^2] Wikipedia contributors. 2025. Red–black tree. Wikipedia, The Free Encyclopedia. Retrieved December 7, 2025 from [https://en.wikipedia.org/wiki/Red–black_tree](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree)
+[^2]: Wikipedia contributors. 2025. Red–black tree. Wikipedia, The Free Encyclopedia. Retrieved December 7, 2025 from [https://en.wikipedia.org/wiki/Red–black_tree](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree)
 
-[^3] Baeldung. Red-Black Trees Applications. Retrieved December 7, 2025 from [https://www.baeldung.com/cs/red-black-trees-applications](https://www.baeldung.com/cs/red-black-trees-applications)
+[^3]: Baeldung. Red-Black Trees Applications. Retrieved December 7, 2025 from [https://www.baeldung.com/cs/red-black-trees-applications](https://www.baeldung.com/cs/red-black-trees-applications)
 
-[^4] David Galles. Data Structure Visualizations: Binary Search Tree. University of San Francisco. Retrieved December 7, 2025 from [https://www.cs.usfca.edu/~galles/visualization/BST.html](https://www.cs.usfca.edu/~galles/visualization/BST.html)
+[^4]: David Galles. Data Structure Visualizations: Binary Search Tree. University of San Francisco. Retrieved December 7, 2025 from [https://www.cs.usfca.edu/~galles/visualization/BST.html](https://www.cs.usfca.edu/~galles/visualization/BST.html)
 
-[^5] David Galles. Data Structure Visualizations: Red-Black Tree. University of San Francisco. Retrieved December 7, 2025 from [https://www.cs.usfca.edu/~galles/visualization/RedBlack.html](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html)
+[^5]: David Galles. Data Structure Visualizations: Red-Black Tree. University of San Francisco. Retrieved December 7, 2025 from [https://www.cs.usfca.edu/~galles/visualization/RedBlack.html](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html)
 
-[^6] GeeksforGeeks. 2025. Introduction to Red-Black Tree. Retrieved December 7, 2025 from [https://www.geeksforgeeks.org/dsa/introduction-to-red-black-tree/](https://www.geeksforgeeks.org/dsa/introduction-to-red-black-tree/)
+[^6]: GeeksforGeeks. 2025. Introduction to Red-Black Tree. Retrieved December 7, 2025 from [https://www.geeksforgeeks.org/dsa/introduction-to-red-black-tree/](https://www.geeksforgeeks.org/dsa/introduction-to-red-black-tree/)
